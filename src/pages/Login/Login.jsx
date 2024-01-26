@@ -1,19 +1,45 @@
+import { useState } from 'react';
 import { Title, Forma, Input, Label } from './Login.styled';
+import { useDispatch } from 'react-redux';
+import { login } from 'myRedux/auth';
 
 export const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+    switch (name) {
+      case 'email':
+        setEmail(value);
+        break;
+      case 'password':
+        setPassword(value);
+        break;
+      default:
+        break;
+    }
+  };
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(login({ email, password }));
+    setEmail('');
+    setPassword('');
+  };
   return (
     <>
       <Title>Login</Title>
 
-      <Forma /* onSubmit={handleSubmit} */>
+      <Forma onSubmit={handleSubmit}>
         <Label>
           Email address
           <Input
-            type="mail"
-            name="mail"
-            // value={name}
+            type="email"
+            name="email"
+            value={email}
             required
-            // onChange={handleChange}
+            onChange={handleChange}
           />
         </Label>
         <Label>
@@ -21,12 +47,12 @@ export const Login = () => {
           <Input
             type="password"
             name="password"
-            // value={phone}
+            value={password}
             required
-            // onChange={handleChange}
+            onChange={handleChange}
           />
         </Label>
-        <button type="submit" /* disabled={isLoading} */>Log in</button>
+        <button type="submit">Log in</button>
       </Forma>
     </>
   );

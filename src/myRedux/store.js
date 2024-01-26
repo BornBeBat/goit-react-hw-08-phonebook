@@ -21,11 +21,16 @@ const persistConfig = {
   whitelist: ['theme'],
 };
 
+const persistAuthConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
 const rootReduser = combineReducers({
   contacts: contactsSlise.reducer,
   filter: filterSlise.reducer,
   theme: themeSlice.reducer,
-  auth: authSlise.reducer,
+  auth: persistReducer(persistAuthConfig, authSlise.reducer),
 });
 
 const persistedReduser = persistReducer(persistConfig, rootReduser);

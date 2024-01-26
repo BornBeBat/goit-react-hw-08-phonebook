@@ -11,14 +11,21 @@ import {
 import { togleTheme } from 'myRedux/themeSlise';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTheme } from 'myRedux/selectors';
-import { selectIsLoggedIn, selectToken, logout } from 'myRedux/auth';
+import {
+  selectIsLoggedIn,
+  selectToken,
+  logout,
+  selectEmail,
+  selectIsLoadingAuth,
+} from 'myRedux/auth';
 
 export const Layout = () => {
   const dispatch = useDispatch();
   const theme = useSelector(selectTheme);
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const email = useSelector(selectIsLoggedIn);
+  const email = useSelector(selectEmail);
   const token = useSelector(selectToken);
+  const isLoading = useSelector(selectIsLoadingAuth);
   return (
     <>
       <Header>
@@ -47,7 +54,12 @@ export const Layout = () => {
           {isLoggedIn && (
             <UserWrapper>
               <p>Welcome {email}</p>
-              <button onClick={dispatch(logout(token))}>quit</button>
+              <button
+                onClick={() => dispatch(logout(token))}
+                disabled={isLoading}
+              >
+                Logout
+              </button>
             </UserWrapper>
           )}
 
