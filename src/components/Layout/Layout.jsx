@@ -8,16 +8,16 @@ import {
   ListItem,
   UserWrapper,
 } from './Layout.styled';
-import { togleTheme } from 'myRedux/themeSlise';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectTheme } from 'myRedux/selectors';
 import {
+  selectTheme,
   selectIsLoggedIn,
   selectToken,
-  logout,
   selectEmail,
   selectIsLoadingAuth,
-} from 'myRedux/auth';
+  logout,
+  togleTheme,
+} from 'myRedux';
 
 export const Layout = () => {
   const dispatch = useDispatch();

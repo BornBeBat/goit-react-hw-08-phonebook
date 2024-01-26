@@ -11,6 +11,13 @@ export const Header = styled.header`
     justify-content: space-between;
     padding-inline-end: 146px;
   }
+  & .MuiSwitch-thumb {
+    background-color: ${({ theme }) => theme.colors.acsent2};
+  }
+
+  & .Mui-checked .MuiSwitch-thumb {
+    background-color: ${({ theme }) => theme.colors.acsent1};
+  }
 `;
 
 export const ThemeSwitcher = styled.div`
@@ -29,7 +36,7 @@ export const UserWrapper = styled.div`
 `;
 
 export const Main = styled.main`
-  /* margin-block-start: 150px; */
+  padding: 12px;
 `;
 
 export const List = styled.ul`

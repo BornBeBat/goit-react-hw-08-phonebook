@@ -1,11 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Title, Forma, Input, Label } from './Register.styled';
-import { useDispatch } from 'react-redux';
-import { register } from 'myRedux/auth';
+import { register, selectIsLoggedIn } from 'myRedux';
+
 export const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
+  const userIsLoggedIn = useSelector(selectIsLoggedIn);
+
+  useEffect(() => {
+    if (userIsLoggedIn) {
+      navigate('/contacts');
+    }
+  }, [userIsLoggedIn, navigate]);
 
   const dispatch = useDispatch();
 

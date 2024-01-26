@@ -1,12 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Title, Forma, Input, Label } from './Login.styled';
-import { useDispatch } from 'react-redux';
-import { login } from 'myRedux/auth';
+import { login, selectIsLoggedIn } from 'myRedux';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userIsLoggedIn = useSelector(selectIsLoggedIn);
+
+  useEffect(() => {
+    if (userIsLoggedIn) {
+      navigate('/contacts');
+    }
+  }, [userIsLoggedIn, navigate]);
 
   const handleChange = e => {
     const { name, value } = e.target;

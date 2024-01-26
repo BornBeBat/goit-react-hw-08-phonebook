@@ -1,16 +1,17 @@
-import { Item, List, Text } from './ContactList.styled';
-import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Audio } from 'react-loader-spinner';
+import { Error } from 'components';
+import { Item, List, Text } from './ContactList.styled';
 import { filterArray } from 'utils';
 import {
   selectContacts,
   selectFilter,
   selectIsLoading,
   selectError,
-} from 'myRedux/selectors';
-import { deleteContact, fetchContacts } from 'myRedux/operations';
-import { Error } from 'components';
+  deleteContact,
+  fetchContacts,
+} from 'myRedux';
 
 export const ContactList = () => {
   const contacts = useSelector(selectContacts);

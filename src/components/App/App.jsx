@@ -5,7 +5,7 @@ import { darkTheme, lightTheme } from 'styles/theme';
 import { Layout } from 'components';
 import { Contacts, Home, Login, Register } from 'pages';
 import { GlobalStyle } from 'styles/CreateGlobalStyle';
-import { selectTheme } from 'myRedux/selectors';
+import { selectTheme } from 'myRedux';
 
 export const App = () => {
   const theme = useSelector(selectTheme);
