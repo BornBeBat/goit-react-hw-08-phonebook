@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Forma, Input, Label } from './ContactForm.styled';
-import { getContacts, getIsLoading } from 'myRedux/selectors';
+import { selectContacts, selectIsLoading } from 'myRedux/selectors';
 import { addContact } from 'myRedux/operations';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const contacts = useSelector(getContacts);
-  const isLoading = useSelector(getIsLoading);
+  const contacts = useSelector(selectContacts);
+  const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
   const handleChange = e => {

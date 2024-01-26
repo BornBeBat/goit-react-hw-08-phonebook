@@ -1,25 +1,18 @@
 import { Route, Routes } from 'react-router-dom';
-import { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
+import { useSelector } from 'react-redux';
 import { darkTheme, lightTheme } from 'styles/theme';
 import { Layout } from 'components';
 import { Contacts, Home, Login, Register } from 'pages';
 import { GlobalStyle } from 'styles/CreateGlobalStyle';
+import { selectTheme } from 'myRedux/selectors';
 
 export const App = () => {
-  const [theme, setTheme] = useState(true);
-
-  const changeTheme = () => {
-    setTheme(!theme);
-  };
-
+  const theme = useSelector(selectTheme);
   return (
     <ThemeProvider theme={theme ? lightTheme : darkTheme}>
       <Routes>
-        <Route
-          path="/"
-          element={<Layout changeTheme={changeTheme} theme={theme} />}
-        >
+        <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />

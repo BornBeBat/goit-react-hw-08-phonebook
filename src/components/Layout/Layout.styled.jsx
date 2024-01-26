@@ -7,6 +7,10 @@ export const Header = styled.header`
   box-shadow: 0px 0px 18px 5px ${({ theme }) => theme.colors.acsent2} inset,
     0px 0px 8px 5px ${({ theme }) => theme.colors.acsent1};
   margin-block-end: 14px;
+  & .MuiToolbar-root {
+    justify-content: space-between;
+    padding-inline-end: 146px;
+  }
 `;
 
 export const ThemeSwitcher = styled.div`
@@ -16,6 +20,12 @@ export const ThemeSwitcher = styled.div`
   align-items: center;
   right: 26px;
   font-size: 1.1rem;
+`;
+
+export const UserWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
 `;
 
 export const Main = styled.main`

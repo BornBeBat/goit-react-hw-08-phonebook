@@ -1,8 +1,20 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { Switch, Toolbar } from '@mui/material';
-import { Header, List, Main, ThemeSwitcher, ListItem } from './Layout.styled';
+import {
+  Header,
+  List,
+  Main,
+  ThemeSwitcher,
+  ListItem,
+  UserWrapper,
+} from './Layout.styled';
+import { togleTheme } from 'myRedux/themeSlise';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectTheme } from 'myRedux/selectors';
 
-export const Layout = ({ changeTheme, theme }) => {
+export const Layout = () => {
+  const dispatch = useDispatch();
+  const theme = useSelector(selectTheme);
   return (
     <>
       <Header>
@@ -12,17 +24,29 @@ export const Layout = ({ changeTheme, theme }) => {
               <NavLink to="/">Home</NavLink>
             </ListItem>
             <ListItem>
+              <NavLink to="/contacts">Contacts</NavLink>
+            </ListItem>
+          </List>
+          <List>
+            <ListItem>
               <NavLink to="/register">Register</NavLink>
             </ListItem>
             <ListItem>
               <NavLink to="/login">Login</NavLink>
             </ListItem>
-            <ListItem>
-              <NavLink to="/contacts">Contacts</NavLink>
-            </ListItem>
           </List>
+
+          <UserWrapper>
+            <p>Welcome</p>
+            <button>quit</button>
+          </UserWrapper>
+
           <ThemeSwitcher>
-            <Switch onChange={changeTheme} />
+            <Switch
+              onChange={() => dispatch(togleTheme())}
+              checked={!theme}
+              color="secondary"
+            />
             <p>{theme ? 'Light' : 'Dark'}</p>
           </ThemeSwitcher>
         </Toolbar>

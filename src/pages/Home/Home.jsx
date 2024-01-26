@@ -1,3 +1,5 @@
+import { Title } from './Home.styled';
+
 export const Home = () => {
-  return <div>go home</div>;
+  return <Title>Wellcome stranger</Title>;
 };

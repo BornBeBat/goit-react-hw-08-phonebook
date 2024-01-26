@@ -4,19 +4,19 @@ import { useEffect } from 'react';
 import { Audio } from 'react-loader-spinner';
 import { filterArray } from 'utils';
 import {
-  getContacts,
-  getFilter,
-  getIsLoading,
-  getError,
+  selectContacts,
+  selectFilter,
+  selectIsLoading,
+  selectError,
 } from 'myRedux/selectors';
 import { deleteContact, fetchContacts } from 'myRedux/operations';
 import { Error } from 'components';
 
 export const ContactList = () => {
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
   const filteredContacts = filterArray(contacts, filter);
   const dispatch = useDispatch();
 

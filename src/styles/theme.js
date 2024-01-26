@@ -12,6 +12,6 @@ export const darkTheme = Object.freeze({
     text: '#b2ffff',
     acsent1: '#247777',
     acsent2: '#1f4f4e',
-    background: '#2f2e2e',
+    background: '#2f2e2ed1',
   },
 });
