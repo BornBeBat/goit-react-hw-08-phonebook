@@ -11,10 +11,14 @@ import {
 import { togleTheme } from 'myRedux/themeSlise';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTheme } from 'myRedux/selectors';
+import { selectIsLoggedIn, selectToken, logout } from 'myRedux/auth';
 
 export const Layout = () => {
   const dispatch = useDispatch();
   const theme = useSelector(selectTheme);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const email = useSelector(selectIsLoggedIn);
+  const token = useSelector(selectToken);
   return (
     <>
       <Header>
@@ -23,23 +27,29 @@ export const Layout = () => {
             <ListItem>
               <NavLink to="/">Home</NavLink>
             </ListItem>
-            <ListItem>
-              <NavLink to="/contacts">Contacts</NavLink>
-            </ListItem>
+            {isLoggedIn && (
+              <ListItem>
+                <NavLink to="/contacts">Contacts</NavLink>
+              </ListItem>
+            )}
           </List>
-          <List>
-            <ListItem>
-              <NavLink to="/register">Register</NavLink>
-            </ListItem>
-            <ListItem>
-              <NavLink to="/login">Login</NavLink>
-            </ListItem>
-          </List>
+          {!isLoggedIn && (
+            <List>
+              <ListItem>
+                <NavLink to="/register">Register</NavLink>
+              </ListItem>
+              <ListItem>
+                <NavLink to="/login">Login</NavLink>
+              </ListItem>
+            </List>
+          )}
 
-          <UserWrapper>
-            <p>Welcome</p>
-            <button>quit</button>
-          </UserWrapper>
+          {isLoggedIn && (
+            <UserWrapper>
+              <p>Welcome {email}</p>
+              <button onClick={dispatch(logout(token))}>quit</button>
+            </UserWrapper>
+          )}
 
           <ThemeSwitcher>
             <Switch
