@@ -9,10 +9,14 @@ export const User = () => {
   const dispatch = useDispatch();
   return (
     <UserWrapper>
-      <p>Welcome {email}</p>
-      <button onClick={() => dispatch(logout())} disabled={isLoading}>
-        Logout
-      </button>
+      {email && (
+        <>
+          <p>Welcome {email}</p>
+          <button onClick={() => dispatch(logout())} disabled={isLoading}>
+            Logout
+          </button>
+        </>
+      )}
     </UserWrapper>
   );
 };

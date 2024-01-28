@@ -9,6 +9,7 @@ import { selectTheme } from 'myRedux';
 
 export const App = () => {
   const theme = useSelector(selectTheme);
+
   return (
     <ThemeProvider theme={theme ? lightTheme : darkTheme}>
       <Routes>

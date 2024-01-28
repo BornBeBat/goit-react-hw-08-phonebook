@@ -3,23 +3,23 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ContactForm, ContactList, Filter } from 'components';
 import { AppContainer, MainTitle, SecondaryTitle } from './Contacts.styled';
-import { selectIsLoggedIn } from 'myRedux';
+import { addContact, selectToken } from 'myRedux';
 
 export const Contacts = () => {
   const navigate = useNavigate();
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const token = useSelector(selectToken);
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!token) {
       navigate('/');
     }
-  }, [isLoggedIn, navigate]);
+  }, [token, navigate]);
 
   return (
     <>
       <AppContainer>
         <MainTitle>Phonebook</MainTitle>
-        <ContactForm />
+        <ContactForm button={'Add contact'} action={addContact} />
         <SecondaryTitle>Contacts</SecondaryTitle>
         <Filter />
         <ContactList />

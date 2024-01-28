@@ -15,9 +15,10 @@ export const Item = styled.li`
   padding: 10px 26px;
   outline: 1px solid ${({ theme }) => theme.colors.acsent1};
   border-radius: 8px;
-  min-height: 78px;
-  & button {
-    display: block;
+  min-height: 120px;
+  & div {
+    display: flex;
+    gap: 16px;
     position: absolute;
     bottom: 5px;
     right: 15px;

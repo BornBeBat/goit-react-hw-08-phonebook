@@ -1,23 +1,29 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Forma, Input, Label } from './ContactForm.styled';
-import { selectContacts, selectIsLoading, addContact } from 'myRedux';
+import {
+  clearId,
+  selectContacts,
+  selectIsLoading,
+  selectModalId,
+  togleModal,
+} from 'myRedux';
 
-export const ContactForm = () => {
+export const ContactForm = ({ button, action }) => {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
   const contacts = useSelector(selectContacts);
   const isLoading = useSelector(selectIsLoading);
+  const id = useSelector(selectModalId);
   const dispatch = useDispatch();
-
   const handleChange = e => {
     const { name, value } = e.target;
     switch (name) {
       case 'name':
         setName(value);
         break;
-      case 'phone':
-        setPhone(value);
+      case 'number':
+        setNumber(value);
         break;
       default:
         break;
@@ -32,9 +38,17 @@ export const ContactForm = () => {
       alert(`${name} is already in contacts`);
       return;
     }
-    dispatch(addContact({ name, phone }));
+    console.log(id);
+    if (id) {
+      dispatch(action({ name, number, id }));
+      dispatch(togleModal());
+      dispatch(clearId());
+    } else {
+      dispatch(action({ name, number }));
+    }
+
     setName('');
-    setPhone('');
+    setNumber('');
   };
   return (
     <>
@@ -50,17 +64,17 @@ export const ContactForm = () => {
           />
         </Label>
         <Label>
-          Phone
+          Number
           <Input
             type="tel"
-            name="phone"
-            value={phone}
+            name="number"
+            value={number}
             required
             onChange={handleChange}
           />
         </Label>
         <button type="submit" disabled={isLoading}>
-          Add contact
+          {button}
         </button>
       </Forma>
     </>

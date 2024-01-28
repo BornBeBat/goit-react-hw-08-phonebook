@@ -3,12 +3,29 @@ import {
   fetchContacts,
   addContact,
   deleteContact,
+  updateContact,
 } from './contacts-operations';
 
 export const contactsSlise = createSlice({
   name: 'contacts',
-  initialState: { items: [], isLoading: false, error: null },
-  reducers: {},
+  initialState: {
+    items: [],
+    isLoading: false,
+    error: null,
+    modalId: '',
+    showModal: false,
+  },
+  reducers: {
+    addId: (state, action) => {
+      state.modalId = action.payload;
+    },
+    clearId: (state, action) => {
+      state.modalId = '';
+    },
+    togleModal: state => {
+      state.showModal = !state.showModal;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchContacts.fulfilled, (state, action) => {
@@ -19,6 +36,11 @@ export const contactsSlise = createSlice({
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.items = state.items.filter(el => el.id !== action.payload.id);
+      })
+      .addCase(updateContact.fulfilled, (state, action) => {
+        state.items = state.items.map(el =>
+          el.id === action.payload.id ? action.payload : el
+        );
       })
       .addMatcher(
         action => action.type.endsWith('/pending'),
@@ -31,6 +53,7 @@ export const contactsSlise = createSlice({
         action => action.type.endsWith('/fulfilled'),
         state => {
           state.isLoading = false;
+          state.error = null;
         }
       )
       .addMatcher(
@@ -42,3 +65,4 @@ export const contactsSlise = createSlice({
       );
   },
 });
+export const { addId, togleModal, clearId } = contactsSlise.actions;

@@ -11,6 +11,8 @@ import {
   selectError,
   deleteContact,
   fetchContacts,
+  addId,
+  togleModal,
 } from 'myRedux';
 
 export const ContactList = () => {
@@ -24,6 +26,11 @@ export const ContactList = () => {
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
+
+  const handleOpenModal = id => {
+    dispatch(addId(id));
+    dispatch(togleModal());
+  };
 
   return (
     <>
@@ -41,13 +48,16 @@ export const ContactList = () => {
       )}
       {!isLoading && (
         <List>
-          {filteredContacts.map(({ name, id, phone }) => (
+          {filteredContacts.map(({ name, id, number }) => (
             <Item key={id}>
               <Text>Name: {name}</Text>
-              <Text>Phone: {phone}</Text>
-              <button onClick={() => dispatch(deleteContact(id))}>
-                Delete
-              </button>
+              <Text>Number: {number}</Text>
+              <div>
+                <button onClick={() => handleOpenModal(id)}>Edit</button>
+                <button onClick={() => dispatch(deleteContact(id))}>
+                  Delete
+                </button>
+              </div>
             </Item>
           ))}
         </List>
