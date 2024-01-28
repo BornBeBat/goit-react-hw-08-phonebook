@@ -3,17 +3,17 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ContactForm, ContactList, Filter } from 'components';
 import { AppContainer, MainTitle, SecondaryTitle } from './Contacts.styled';
-import { selectToken } from 'myRedux';
+import { selectIsLoggedIn } from 'myRedux';
 
 export const Contacts = () => {
   const navigate = useNavigate();
-  const userIsInactive = useSelector(selectToken);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
-    if (!userIsInactive) {
+    if (!isLoggedIn) {
       navigate('/');
     }
-  }, [userIsInactive, navigate]);
+  }, [isLoggedIn, navigate]);
 
   return (
     <>

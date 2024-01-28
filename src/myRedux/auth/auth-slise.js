@@ -14,20 +14,18 @@ export const authSlise = createSlice({
   extraReducers: builder => {
     builder
       .addCase(register.fulfilled, (state, action) => {
-        state.user.name = action.payload.user.name;
-        state.user.email = action.payload.user.email;
+        state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.user.name = action.payload.user.name;
-        state.user.email = action.payload.user.email;
+        state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-      .addCase(logout.fulfilled, (state, action) => {
-        state.user.name = '';
-        state.user.email = '';
+      .addCase(logout.fulfilled, state => {
+        state.user = { name: '', email: '' };
+        state.token = '';
         state.isLoggedIn = false;
       })
       .addMatcher(
