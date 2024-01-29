@@ -6,6 +6,7 @@ const initialState = {
   token: '',
   isLoggedIn: false,
   isLoading: false,
+  error: null,
 };
 
 export const authSlise = createSlice({
@@ -36,18 +37,21 @@ export const authSlise = createSlice({
         action => action.type.endsWith('/pending'),
         state => {
           state.isLoading = true;
+          state.error = null;
         }
       )
       .addMatcher(
         action => action.type.endsWith('/fulfilled'),
         state => {
           state.isLoading = false;
+          state.error = null;
         }
       )
       .addMatcher(
         action => action.type.endsWith('/rejected'),
         (state, action) => {
           state.isLoading = false;
+          state.error = action.payload;
         }
       );
   },
