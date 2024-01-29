@@ -6,6 +6,7 @@ import { Layout } from 'components';
 import { Contacts, Home, Login, Register } from 'pages';
 import { GlobalStyle } from 'styles/CreateGlobalStyle';
 import { selectTheme } from 'myRedux';
+import { PublicRoute, PrivateRoute } from 'routes';
 
 export const App = () => {
   const theme = useSelector(selectTheme);
@@ -15,9 +16,33 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="register" element={<Register />} />
-          <Route path="login" element={<Login />} />
-          <Route path="contacts" element={<Contacts />} />
+
+          <Route
+            path="register"
+            element={
+              <PublicRoute>
+                <Register />
+              </PublicRoute>
+            }
+          />
+
+          <Route
+            path="login"
+            element={
+              <PublicRoute>
+                <Login />
+              </PublicRoute>
+            }
+          />
+
+          <Route
+            path="contacts"
+            element={
+              <PrivateRoute>
+                <Contacts />{' '}
+              </PrivateRoute>
+            }
+          />
         </Route>
       </Routes>
       <GlobalStyle />
