@@ -1,18 +1,17 @@
 import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { useSelector } from 'react-redux';
-import { darkTheme, lightTheme } from 'styles/theme';
-import { Layout } from 'components';
+import { useContext } from 'react';
+import { Layout, ThemeContext } from 'components';
 import { Contacts, Home, Login, Register } from 'pages';
 import { GlobalStyle } from 'styles/CreateGlobalStyle';
-import { selectTheme } from 'myRedux';
 import { PublicRoute, PrivateRoute } from 'routes';
+import { theme } from 'styles/theme';
 
 export const App = () => {
-  const theme = useSelector(selectTheme);
+  const { theme: color } = useContext(ThemeContext);
 
   return (
-    <ThemeProvider theme={theme ? lightTheme : darkTheme}>
+    <ThemeProvider theme={theme[color]}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

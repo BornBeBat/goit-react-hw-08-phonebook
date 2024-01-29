@@ -1,19 +1,16 @@
 import { Switch } from '@mui/material';
-import { selectTheme, togleTheme } from 'myRedux';
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { ThemeContext } from 'components';
+import React, { useContext } from 'react';
 
 export const Switcher = () => {
-  const dispatch = useDispatch();
-  const theme = useSelector(selectTheme);
+  const { theme: themeColor, toggleTheme } = useContext(ThemeContext);
   return (
     <>
       <Switch
-        onChange={() => dispatch(togleTheme())}
-        checked={!theme}
+        onChange={() => toggleTheme()}
+        checked={themeColor !== 'light'}
         color="secondary"
       />
-      <p>{theme ? 'Light' : 'Dark'}</p>
     </>
   );
 };

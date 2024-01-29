@@ -1,7 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { contactsSlise } from './contacts/contacts-slise';
 import { filterSlise } from './filter/filter-slise';
-import { themeSlice } from './theme/theme-slise';
 import {
   persistReducer,
   persistStore,
@@ -15,12 +14,6 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { authSlise } from './auth';
 
-const persistConfig = {
-  key: 'contacts',
-  storage,
-  whitelist: ['theme'],
-};
-
 const persistAuthConfig = {
   key: 'auth',
   storage,
@@ -29,14 +22,11 @@ const persistAuthConfig = {
 const rootReduser = combineReducers({
   contacts: contactsSlise.reducer,
   filter: filterSlise.reducer,
-  theme: themeSlice.reducer,
   auth: persistReducer(persistAuthConfig, authSlise.reducer),
 });
 
-const persistedReduser = persistReducer(persistConfig, rootReduser);
-
 export const store = configureStore({
-  reducer: persistedReduser,
+  reducer: rootReduser,
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
