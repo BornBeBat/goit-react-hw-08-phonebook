@@ -7,16 +7,25 @@ import { GlobalStyle } from 'styles/CreateGlobalStyle';
 import { PublicRoute, PrivateRoute } from 'routes';
 import { theme } from 'styles/theme';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUser, selectIsRefreshing } from 'myRedux';
+import { fetchUser, selectAuthError, selectIsRefreshing } from 'myRedux';
 import { Oval } from 'react-loader-spinner';
+import { toast } from 'react-toastify';
 
 export const App = () => {
   const { theme: color } = useContext(ThemeContext);
   const isRefreshing = useSelector(selectIsRefreshing);
   const dispatch = useDispatch();
+  const error = useSelector(selectAuthError);
+
   useEffect(() => {
     dispatch(fetchUser());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+  }, [error]);
 
   return isRefreshing ? (
     <Oval

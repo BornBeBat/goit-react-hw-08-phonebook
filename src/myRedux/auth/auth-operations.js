@@ -57,7 +57,7 @@ export const fetchUser = createAsyncThunk(
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
     if (!persistedToken) {
-      throw new Error('no token');
+      return thunkAPI.rejectWithValue('Not Autorizate');
     }
     token.set(persistedToken);
 
