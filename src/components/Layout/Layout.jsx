@@ -8,9 +8,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { selectIsLoggedIn, selectShowModal } from 'myRedux';
 import { AuthNav, Nav, Switcher, User } from 'components/Appbar';
 import { Modal } from 'components/Modal';
+import { Loader } from 'components';
 
 import { Header, Main, SwitcherWrappepr } from './Layout.styled';
-import { Loader } from 'components';
 
 export const Layout = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
