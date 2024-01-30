@@ -7,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { selectIsLoggedIn, selectShowModal } from 'myRedux';
 import { AuthNav, Nav, Switcher, User } from 'components/Appbar';
 import { Modal } from 'components/Modal';
+import { Suspense } from 'react';
+import { Oval } from 'react-loader-spinner';
 
 export const Layout = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -25,7 +27,27 @@ export const Layout = () => {
         </Toolbar>
       </Header>
       <Main>
-        <Outlet />
+        <Suspense
+          fallback={
+            <Oval
+              visible={true}
+              height="80"
+              width="80"
+              color="#4fa94d"
+              ariaLabel="oval-loading"
+              wrapperStyle={{
+                display: 'flex',
+                width: '98vw',
+                height: '95vh',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+              s
+            />
+          }
+        >
+          <Outlet />
+        </Suspense>
       </Main>
       {showModal && <Modal />}
       <ToastContainer />
