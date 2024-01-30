@@ -2,7 +2,6 @@ import { Suspense } from 'react';
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { Toolbar } from '@mui/material';
-import { Oval } from 'react-loader-spinner';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,6 +10,7 @@ import { AuthNav, Nav, Switcher, User } from 'components/Appbar';
 import { Modal } from 'components/Modal';
 
 import { Header, Main, SwitcherWrappepr } from './Layout.styled';
+import { Loader } from 'components';
 
 export const Layout = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -29,25 +29,7 @@ export const Layout = () => {
         </Toolbar>
       </Header>
       <Main>
-        <Suspense
-          fallback={
-            <Oval
-              visible={true}
-              height="80"
-              width="80"
-              color="#4fa94d"
-              ariaLabel="oval-loading"
-              wrapperStyle={{
-                display: 'flex',
-                width: '98vw',
-                height: '95vh',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-              s
-            />
-          }
-        >
+        <Suspense fallback={<Loader loaderType="isRefreshing" />}>
           <Outlet />
         </Suspense>
       </Main>

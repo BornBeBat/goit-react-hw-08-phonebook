@@ -3,10 +3,9 @@ import { lazy, useContext, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { toast } from 'react-toastify';
-import { Oval } from 'react-loader-spinner';
 
 import { PublicRoute, PrivateRoute } from 'routes';
-import { Layout, ThemeContext } from 'components';
+import { Layout, Loader, ThemeContext } from 'components';
 
 import { fetchUser, selectAuthError, selectIsRefreshing } from 'myRedux';
 import { theme } from 'styles/theme';
@@ -34,21 +33,7 @@ export const App = () => {
   }, [error]);
 
   return isRefreshing ? (
-    <Oval
-      visible={true}
-      height="80"
-      width="80"
-      color="#4fa94d"
-      ariaLabel="oval-loading"
-      wrapperStyle={{
-        display: 'flex',
-        width: '98vw',
-        height: '95vh',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-      s
-    />
+    <Loader loaderType="oval" />
   ) : (
     <ThemeProvider theme={theme[color]}>
       <Routes>

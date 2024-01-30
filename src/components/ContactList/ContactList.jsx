@@ -1,9 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Audio } from 'react-loader-spinner';
-import { Error } from 'components';
-import { Item, List, Text } from './ContactList.styled';
-import { filterArray } from 'utils';
+
 import {
   selectContacts,
   selectFilter,
@@ -14,6 +11,9 @@ import {
   addId,
   togleModal,
 } from 'myRedux';
+import { Error, Loader } from 'components';
+import { filterArray } from 'utils';
+import { Item, List, Text } from './ContactList.styled';
 
 export const ContactList = () => {
   const contacts = useSelector(selectContacts);
@@ -37,17 +37,7 @@ export const ContactList = () => {
   return (
     <>
       {error && <Error />}
-      {isLoading && (
-        <Audio
-          height="80"
-          width="80"
-          radius="9"
-          color="green"
-          ariaLabel="loading"
-          wrapperStyle
-          wrapperClass
-        />
-      )}
+      {isLoading && <Loader loaderType="audio" />}
       {!isLoading && (
         <List>
           {filteredContacts.map(({ name, id, number }) => (
