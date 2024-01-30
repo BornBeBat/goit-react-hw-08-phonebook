@@ -6,6 +6,7 @@ const initialState = {
   token: '',
   isLoggedIn: false,
   isLoading: false,
+  isRefreshing: false,
   error: null,
 };
 
@@ -33,6 +34,9 @@ export const authSlise = createSlice({
         state.user = action.payload;
         state.isLoggedIn = true;
       })
+      .addCase(fetchUser.pending, state => {
+        state.isRefreshing = true;
+      })
       .addMatcher(
         action => action.type.endsWith('/pending'),
         state => {
@@ -45,6 +49,7 @@ export const authSlise = createSlice({
         state => {
           state.isLoading = false;
           state.error = null;
+          state.isRefreshing = false;
         }
       )
       .addMatcher(
@@ -52,6 +57,7 @@ export const authSlise = createSlice({
         (state, action) => {
           state.isLoading = false;
           state.error = action.payload;
+          state.isRefreshing = false;
         }
       );
   },
