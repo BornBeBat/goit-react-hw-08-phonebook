@@ -38,7 +38,6 @@ export const ContactForm = ({ button, action }) => {
       alert(`${name} is already in contacts`);
       return;
     }
-    console.log(id);
     if (id) {
       dispatch(action({ name, number, id }));
       dispatch(togleModal());
