@@ -1,15 +1,21 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { lazy, useContext, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { useContext, useEffect } from 'react';
-import { Layout, ThemeContext } from 'components';
-import { Contacts, Home, Login, Register } from 'pages';
-import { GlobalStyle } from 'styles/CreateGlobalStyle';
-import { PublicRoute, PrivateRoute } from 'routes';
-import { theme } from 'styles/theme';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUser, selectAuthError, selectIsRefreshing } from 'myRedux';
-import { Oval } from 'react-loader-spinner';
 import { toast } from 'react-toastify';
+import { Oval } from 'react-loader-spinner';
+
+import { PublicRoute, PrivateRoute } from 'routes';
+import { Layout, ThemeContext } from 'components';
+
+import { fetchUser, selectAuthError, selectIsRefreshing } from 'myRedux';
+import { theme } from 'styles/theme';
+import { GlobalStyle } from 'styles/CreateGlobalStyle';
+
+const Contacts = lazy(() => import('pages/Contacts/Contacts'));
+const Home = lazy(() => import('pages/Home/Home'));
+const Login = lazy(() => import('pages/Login/Login'));
+const Register = lazy(() => import('pages/Register/Register'));
 
 export const App = () => {
   const { theme: color } = useContext(ThemeContext);

@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { Title } from './Home.styled';
 import { selectName } from 'myRedux';
 
-export const Home = () => {
+const Home = () => {
   const name = useSelector(selectName);
   return (
     <Title>
@@ -10,3 +10,4 @@ export const Home = () => {
     </Title>
   );
 };
+export default Home;

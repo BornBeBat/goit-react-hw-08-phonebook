@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Title, Forma, Input, Label } from './Register.styled';
 import { register } from 'myRedux';
 
-export const Register = () => {
+const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -74,3 +74,5 @@ export const Register = () => {
     </>
   );
 };
+
+export default Register;

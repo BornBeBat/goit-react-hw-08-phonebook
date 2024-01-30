@@ -2,7 +2,7 @@ import { ContactForm, ContactList, Filter } from 'components';
 import { AppContainer, MainTitle, SecondaryTitle } from './Contacts.styled';
 import { addContact } from 'myRedux';
 
-export const Contacts = () => {
+const Contacts = () => {
   return (
     <>
       <AppContainer>
@@ -15,3 +15,5 @@ export const Contacts = () => {
     </>
   );
 };
+
+export default Contacts;

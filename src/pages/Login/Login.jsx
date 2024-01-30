@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Title, Forma, Input, Label } from './Login.styled';
 import { login } from 'myRedux';
 
-export const Login = () => {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
@@ -57,3 +57,4 @@ export const Login = () => {
     </>
   );
 };
+export default Login;
