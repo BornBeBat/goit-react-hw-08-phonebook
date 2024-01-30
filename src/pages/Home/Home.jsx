@@ -1,6 +1,8 @@
 import { useSelector } from 'react-redux';
-import { Title } from './Home.styled';
+
 import { selectName } from 'myRedux';
+
+import { Title } from './Home.styled';
 
 const Home = () => {
   const name = useSelector(selectName);

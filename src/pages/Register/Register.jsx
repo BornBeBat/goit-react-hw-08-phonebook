@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Title, Forma, Input, Label } from './Register.styled';
+
 import { register } from 'myRedux';
+
+import { Title, Forma, Input, Label } from './Register.styled';
 
 const Register = () => {
   const [name, setName] = useState('');

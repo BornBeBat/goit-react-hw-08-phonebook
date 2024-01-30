@@ -1,17 +1,17 @@
-import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
-import { Overlay, Window } from './Modal.styled';
-import { ContactForm } from 'components';
-import { clearId, togleModal, updateContact } from 'myRedux';
+import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
+
+import { clearId, togleModal, updateContact } from 'myRedux';
+import { ContactForm } from 'components';
+
+import { Overlay, Window } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
 export const Modal = () => {
   const dispatch = useDispatch();
-  /**
-   * Effect
-   */
+
   useEffect(() => {
     const handleEscape = event => {
       if (event.code === 'Escape') {
@@ -25,9 +25,6 @@ export const Modal = () => {
       window.removeEventListener('keydown', handleEscape);
     };
   }, [dispatch]);
-  /**
-   * Functions
-   */
 
   const handleClick = event => {
     const { target, currentTarget } = event;
@@ -36,10 +33,6 @@ export const Modal = () => {
       dispatch(clearId());
     }
   };
-
-  /**
-   * Destructuring prop "info"
-   */
 
   return createPortal(
     <Overlay onClick={handleClick}>

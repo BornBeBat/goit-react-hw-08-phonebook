@@ -1,14 +1,16 @@
+import { Suspense } from 'react';
+import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { Toolbar } from '@mui/material';
-import { Header, Main, SwitcherWrappepr } from './Layout.styled';
-import { useSelector } from 'react-redux';
+import { Oval } from 'react-loader-spinner';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 import { selectIsLoggedIn, selectShowModal } from 'myRedux';
 import { AuthNav, Nav, Switcher, User } from 'components/Appbar';
 import { Modal } from 'components/Modal';
-import { Suspense } from 'react';
-import { Oval } from 'react-loader-spinner';
+
+import { Header, Main, SwitcherWrappepr } from './Layout.styled';
 
 export const Layout = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);

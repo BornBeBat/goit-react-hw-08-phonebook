@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Input, Label } from './Filter.styled';
+
 import { updateFilter } from 'myRedux';
+
+import { Input, Label } from './Filter.styled';
 
 export const Filter = ({ onChange }) => {
   const filter = useSelector(state => state.filter);

@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Title, Forma, Input, Label } from './Login.styled';
+
 import { login } from 'myRedux';
+
+import { Title, Forma, Input, Label } from './Login.styled';
 
 const Login = () => {
   const [email, setEmail] = useState('');

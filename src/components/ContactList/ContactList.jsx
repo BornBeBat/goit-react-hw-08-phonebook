@@ -20,7 +20,9 @@ export const ContactList = () => {
   const filter = useSelector(selectFilter);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
+
   const filteredContacts = filterArray(contacts, filter);
+
   const dispatch = useDispatch();
 
   useEffect(() => {

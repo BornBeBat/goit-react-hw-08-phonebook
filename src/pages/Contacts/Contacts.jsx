@@ -1,6 +1,8 @@
-import { ContactForm, ContactList, Filter } from 'components';
-import { AppContainer, MainTitle, SecondaryTitle } from './Contacts.styled';
 import { addContact } from 'myRedux';
+
+import { ContactForm, ContactList, Filter } from 'components';
+
+import { AppContainer, MainTitle, SecondaryTitle } from './Contacts.styled';
 
 const Contacts = () => {
   return (

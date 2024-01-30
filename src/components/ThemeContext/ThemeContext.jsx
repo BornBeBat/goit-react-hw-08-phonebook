@@ -1,5 +1,6 @@
-import { useLocalStorage } from 'hooks/UseLocalStorage';
 import React, { createContext } from 'react';
+
+import { useLocalStorage } from 'hooks/UseLocalStorage';
 
 const ThemeContext = createContext();
 

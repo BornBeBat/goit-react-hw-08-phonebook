@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Forma, Input, Label } from './ContactForm.styled';
 import {
   clearId,
   selectContacts,
@@ -9,13 +8,19 @@ import {
   togleModal,
 } from 'myRedux';
 
+import { Forma, Input, Label } from './ContactForm.styled';
+
 export const ContactForm = ({ button, action }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
   const contacts = useSelector(selectContacts);
   const isLoading = useSelector(selectIsLoading);
+
   const id = useSelector(selectModalId);
+
   const dispatch = useDispatch();
+
   const handleChange = e => {
     const { name, value } = e.target;
     switch (name) {
@@ -29,6 +34,7 @@ export const ContactForm = ({ button, action }) => {
         break;
     }
   };
+
   const handleSubmit = e => {
     e.preventDefault();
     const isExist = contacts.find(

@@ -1,6 +1,4 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { contactsSlise } from './contacts/contacts-slise';
-import { filterSlise } from './filter/filter-slise';
 import {
   persistReducer,
   persistStore,
@@ -12,6 +10,9 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+
+import { contactsSlise } from './contacts';
+import { filterSlise } from './filter';
 import { authSlise } from './auth';
 
 const persistAuthConfig = {
@@ -19,6 +20,7 @@ const persistAuthConfig = {
   storage,
   whitelist: ['token'],
 };
+
 const rootReduser = combineReducers({
   contacts: contactsSlise.reducer,
   filter: filterSlise.reducer,

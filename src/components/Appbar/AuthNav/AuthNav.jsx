@@ -1,6 +1,7 @@
 import React from 'react';
-import { List, ListItem } from './AuthNav.styled';
 import { NavLink } from 'react-router-dom';
+
+import { List, ListItem } from './AuthNav.styled';
 
 export const AuthNav = () => {
   return (

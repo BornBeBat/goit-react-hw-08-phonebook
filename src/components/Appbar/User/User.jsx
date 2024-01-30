@@ -1,7 +1,9 @@
 import React from 'react';
-import { UserWrapper } from './User.styled';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { logout, selectEmail, selectIsLoading } from 'myRedux';
+
+import { UserWrapper } from './User.styled';
 
 export const User = () => {
   const email = useSelector(selectEmail);

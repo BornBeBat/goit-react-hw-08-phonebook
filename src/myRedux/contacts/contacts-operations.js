@@ -36,6 +36,7 @@ export const deleteContact = createAsyncThunk(
     }
   }
 );
+
 export const updateContact = createAsyncThunk(
   'editContact',
   async ({ id, name, number }, thunkAPI) => {

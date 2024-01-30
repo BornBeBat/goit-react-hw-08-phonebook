@@ -65,4 +65,5 @@ export const contactsSlise = createSlice({
       );
   },
 });
+
 export const { addId, togleModal, clearId } = contactsSlise.actions;
