@@ -9,7 +9,7 @@ import { Overlay, Window } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export const Modal = () => {
+export const Modal = ({ children }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,7 +37,8 @@ export const Modal = () => {
   return createPortal(
     <Overlay onClick={handleClick}>
       <Window>
-        <ContactForm button={'edit contact'} action={updateContact} />
+        {children}
+        {/* <ContactForm button={'edit contact'} action={updateContact} /> */}
       </Window>
     </Overlay>,
     modalRoot

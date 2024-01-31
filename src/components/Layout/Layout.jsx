@@ -5,10 +5,10 @@ import { Toolbar } from '@mui/material';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { selectIsLoggedIn, selectShowModal } from 'myRedux';
+import { selectIsLoggedIn, selectShowModal, updateContact } from 'myRedux';
 import { AuthNav, Nav, Switcher, User } from 'components/Appbar';
 import { Modal } from 'components/Modal';
-import { Loader } from 'components';
+import { ContactForm, Loader } from 'components';
 
 import { Header, Main, SwitcherWrappepr } from './Layout.styled';
 
@@ -33,7 +33,11 @@ export const Layout = () => {
           <Outlet />
         </Suspense>
       </Main>
-      {showModal && <Modal />}
+      {showModal && (
+        <Modal>
+          <ContactForm button={'edit contact'} action={updateContact} />
+        </Modal>
+      )}
       <ToastContainer />
     </>
   );
